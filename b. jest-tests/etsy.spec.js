@@ -3,12 +3,13 @@
  * @desc Goes to etsy.com, select the first knick knack and adds it to the shopping cart.
  */
 
-const puppeteer = require('puppeteer')
+const puppeteer = require('puppeteer-core')
 let browser
 let page
 
 beforeAll(async () => {
-  browser = await puppeteer.launch()
+  const browserURL = 'http://127.0.0.1:9222';
+browser = await puppeteer.connect({browserURL, ignoreHTTPSErrors: true});
   page = await browser.newPage()
   await page.setExtraHTTPHeaders({ 'Accept-Language': 'en-GB,en-US;q=0.9,en;q=0.8' })
   await page.setViewport({ width: 1280, height: 800 })
